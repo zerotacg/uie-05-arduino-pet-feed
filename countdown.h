@@ -22,8 +22,12 @@ class Countdown {
     }
 
     void update() {
-      if ( state_.mode == RUNNING && millis() > state_.offset) {
-        state_.mode = DONE;
+      if ( state_.mode == RUNNING) {
+        state_.timer = state_.offset - millis();
+        if(millis() > state_.offset) {
+          state_.mode = DONE;
+          state_.timer = 0;
+        }
       }
     }
 };
