@@ -6,11 +6,11 @@
 #include "countdown.h"
 #include "display.h"
 
-LiquidCrystal lcd(9, 8, 7, 6, 5, 4);
+LiquidCrystal lcd(12, 11, 7, 6, 5, 4);
 Servo servo;
 const byte incButtonPin = 3;
 const byte startButtonPin = 2;
-const byte servoPin = 10;
+const byte servoPin = 9;
 
 State state;
 Countdown countdown(state);
@@ -18,6 +18,7 @@ Display display(state, lcd);
 Container container(state, servo);
 volatile unsigned long inc_prev, inc_curr;
 volatile unsigned long start_prev, start_curr;
+volatile const unsigned long buttonDelay = 20000;
 
 void setup() {
   Serial.begin(19200);
@@ -45,7 +46,7 @@ void inc() {
   inc_curr = micros();
 
   if (inc_curr > inc_prev) {
-    inc_prev = inc_curr + 3000;
+    inc_prev = inc_curr + buttonDelay;
     countdown.inc();
   }
 }
@@ -54,7 +55,7 @@ void start() {
   start_curr = micros();
 
   if (start_curr > start_prev) {
-    start_prev = start_curr + 3000;
+    start_prev = start_curr + buttonDelay;
     countdown.start();
   }
 }

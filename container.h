@@ -27,11 +27,13 @@ class Container {
 
     void open() {
         Serial.println("open container");
+        servo_.write(90);
         // implement opening of container
     }
 
     void close() {
         Serial.println("close container");
+        servo_.write(180);
         // implement closing of container
     }
 };
