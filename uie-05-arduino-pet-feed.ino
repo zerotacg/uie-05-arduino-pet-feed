@@ -23,7 +23,7 @@ volatile const unsigned long buttonDelay = 20000;
 void setup() {
   Serial.begin(19200);
   lcd.begin(16, 2);
-  lcd.print(" UIE Pet-Feeder");
+  lcd.print(" UIE Pet-Feed");
   servo.attach(servoPin);
 
   attachInterrupt(digitalPinToInterrupt(incButtonPin), inc, RISING);
